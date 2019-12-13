@@ -26,4 +26,67 @@ public class BasicCalculatorTest {
         calc.input('1');
         Assert.assertEquals("1", calc.getBuffer());
     }
+
+    @Test
+    public void complexInput() {
+        calc.input('1');
+        calc.input('2');
+        Assert.assertEquals("12", calc.getBuffer());
+    }
+
+    @Test
+    public void resetBuffer() {
+        calc.input('1');
+        calc.input('2');
+        calc.resetBuffer();
+        Assert.assertEquals("0", calc.getBuffer());
+    }
+
+    @Test
+    public void addNumbers() {
+        calc.input('1');
+        calc.input('1');
+        calc.enter();
+        calc.input('1');
+        calc.calculate(Operator.ADD);
+        Assert.assertEquals("12.0", calc.getBuffer());
+    }
+
+    @Test
+    public void subNumbers() {
+        calc.input('1');
+        calc.input('1');
+        calc.enter();
+        calc.input('1');
+        calc.calculate(Operator.SUB);
+        Assert.assertEquals("10.0", calc.getBuffer());
+    }
+
+    @Test
+    public void mulNumbers() {
+        calc.input('1');
+        calc.input('1');
+        calc.enter();
+        calc.input('2');
+        calc.calculate(Operator.MUL);
+        Assert.assertEquals("22.0", calc.getBuffer());
+    }
+
+    @Test
+    public void divNumbers() {
+        calc.input('1');
+        calc.input('1');
+        calc.enter();
+        calc.input('2');
+        calc.calculate(Operator.DIV);
+        Assert.assertEquals("5.5", calc.getBuffer());
+    }
+
+    @Test
+    public void addOneNumber() {
+        calc.input('1');
+        calc.input('1');
+        calc.calculate(Operator.ADD);
+        Assert.assertEquals("11.0", calc.getBuffer());
+    }
 }
