@@ -29,6 +29,11 @@ public interface CalculatorInterface {
     void calculate(Operator operator);
 
     /**
+     * Change the sign of the buffer.
+     */
+    void changeSign();
+
+    /**
      * Reset the buffer.
      */
     void resetBuffer();

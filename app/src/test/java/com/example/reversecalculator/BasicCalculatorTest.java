@@ -89,4 +89,43 @@ public class BasicCalculatorTest {
         calc.calculate(Operator.ADD);
         Assert.assertEquals("11.0", calc.getBuffer());
     }
+
+    @Test
+    public void multipleSeparators() {
+        calc.input('1');
+        calc.input('.');
+        calc.input('.');
+        calc.input('2');
+        Assert.assertEquals("1.2", calc.getBuffer());
+    }
+
+    @Test
+    public void reset() {
+        calc.input('1');
+        calc.enter();
+        calc.input('2');
+        calc.reset();
+        Assert.assertEquals("0", calc.getBuffer());
+        calc.calculate(Operator.ADD);
+        Assert.assertEquals("0.0", calc.getBuffer());
+    }
+
+    @Test
+    public void expression() {
+        calc.input('4');
+        calc.enter();
+        calc.input('2');
+        calc.enter();
+        calc.input('3');
+        calc.calculate(Operator.MUL);
+        calc.calculate(Operator.ADD);
+        Assert.assertEquals("10.0", calc.getBuffer());
+    }
+
+    @Test
+    public void changeSign() {
+        calc.input('1');
+        calc.changeSign();
+        Assert.assertEquals("-1.0", calc.getBuffer());
+    }
 }

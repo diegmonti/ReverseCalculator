@@ -9,6 +9,8 @@ public class BasicCalculator implements CalculatorInterface {
 
     @Override
     public void input(char value) {
+        if (value == '.' && buffer.contains("."))
+            return;
         buffer += Character.toString(value);
     }
 
@@ -55,6 +57,12 @@ public class BasicCalculator implements CalculatorInterface {
         }
 
         buffer = String.valueOf(res);
+    }
+
+    @Override
+    public void changeSign() {
+        double value = Double.parseDouble(buffer);
+        buffer = String.valueOf(value * -1);
     }
 
     @Override
