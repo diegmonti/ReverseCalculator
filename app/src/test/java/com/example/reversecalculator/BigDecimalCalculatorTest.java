@@ -7,13 +7,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
-public class BasicCalculatorTest {
+public class BigDecimalCalculatorTest {
 
     private CalculatorInterface calc;
 
     @Before
     public void setUp() {
-        calc = new BasicCalculator();
+        calc = new BigDecimalCalculator();
     }
 
     @Test
@@ -39,7 +39,7 @@ public class BasicCalculatorTest {
         calc.input('.');
         calc.input('1');
         calc.input('2');
-        Assert.assertEquals(".12", calc.getBuffer());
+        Assert.assertEquals("0.12", calc.getBuffer());
     }
 
     @Test
@@ -67,7 +67,7 @@ public class BasicCalculatorTest {
         calc.enter();
         calc.input('1');
         calc.calculate(Operator.ADD);
-        Assert.assertEquals("12.0", calc.getBuffer());
+        Assert.assertEquals("12", calc.getBuffer());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class BasicCalculatorTest {
         calc.enter();
         calc.input('1');
         calc.calculate(Operator.SUB);
-        Assert.assertEquals("10.0", calc.getBuffer());
+        Assert.assertEquals("10", calc.getBuffer());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class BasicCalculatorTest {
         calc.enter();
         calc.input('2');
         calc.calculate(Operator.MUL);
-        Assert.assertEquals("22.0", calc.getBuffer());
+        Assert.assertEquals("22", calc.getBuffer());
     }
 
     @Test
@@ -105,7 +105,7 @@ public class BasicCalculatorTest {
         calc.input('1');
         calc.input('1');
         calc.calculate(Operator.ADD);
-        Assert.assertEquals("11.0", calc.getBuffer());
+        Assert.assertEquals("11", calc.getBuffer());
     }
 
     @Test
@@ -116,16 +116,16 @@ public class BasicCalculatorTest {
         calc.reset();
         Assert.assertEquals("0", calc.getBuffer());
         calc.calculate(Operator.ADD);
-        Assert.assertEquals("0.0", calc.getBuffer());
+        Assert.assertEquals("0", calc.getBuffer());
     }
 
     @Test
     public void changeSign() {
         calc.input('1');
         calc.changeSign();
-        Assert.assertEquals("-1.0", calc.getBuffer());
+        Assert.assertEquals("-1", calc.getBuffer());
         calc.changeSign();
-        Assert.assertEquals("1.0", calc.getBuffer());
+        Assert.assertEquals("1", calc.getBuffer());
     }
 
     @Test
@@ -133,7 +133,7 @@ public class BasicCalculatorTest {
         calc.input('2');
         calc.enter();
         calc.calculate(Operator.MUL);
-        Assert.assertEquals("0.0", calc.getBuffer());
+        Assert.assertEquals("4", calc.getBuffer());
     }
 
     @Test
@@ -142,7 +142,7 @@ public class BasicCalculatorTest {
         calc.enter();
         calc.input('0');
         calc.calculate(Operator.DIV);
-        Assert.assertEquals("Infinity", calc.getBuffer());
+        Assert.assertEquals("ERROR", calc.getBuffer());
     }
 
     @Test
@@ -154,7 +154,7 @@ public class BasicCalculatorTest {
         calc.input('3');
         calc.calculate(Operator.MUL);
         calc.calculate(Operator.ADD);
-        Assert.assertEquals("10.0", calc.getBuffer());
+        Assert.assertEquals("10", calc.getBuffer());
     }
 
 }
