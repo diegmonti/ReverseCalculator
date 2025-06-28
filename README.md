@@ -1,3 +1,3 @@
 # ReverseCalculator
 
-An Android calculator app using the reverse polish notation.
+An Android calculator app using the Reverse Polish notation.
