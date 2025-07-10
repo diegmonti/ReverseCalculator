@@ -61,8 +61,12 @@ public class BasicCalculator implements CalculatorInterface {
 
     @Override
     public void changeSign() {
-        double value = Double.parseDouble(buffer);
-        buffer = String.valueOf(value * -1);
+        double value = Double.parseDouble(getBuffer());
+        value *= -1;
+        // Avoid "-0.0" when the buffer was empty or zero
+        if (value == -0.0)
+            value = 0.0;
+        buffer = String.valueOf(value);
     }
 
     @Override

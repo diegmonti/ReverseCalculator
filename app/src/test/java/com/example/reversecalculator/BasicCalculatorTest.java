@@ -129,6 +129,13 @@ public class BasicCalculatorTest {
     }
 
     @Test
+    public void changeSignEmptyBuffer() {
+        // change sign when no value has been entered
+        calc.changeSign();
+        Assert.assertEquals("0.0", calc.getBuffer());
+    }
+
+    @Test
     public void addEmptyBuffer() {
         calc.input('2');
         calc.enter();
