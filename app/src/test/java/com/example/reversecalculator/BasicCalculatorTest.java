@@ -136,7 +136,7 @@ public class BasicCalculatorTest {
     }
 
     @Test
-    public void addEmptyBuffer() {
+    public void mulEmptyBuffer() {
         calc.input('2');
         calc.enter();
         calc.calculate(Operator.MUL);
