@@ -1,14 +1,47 @@
+# Built files
+/build/
+*/build/
+
+# Gradle
+.gradle/
+**/local.properties
+!gradle-wrapper.jar
+
+# Signing files
+**/signing.properties
+
+# Android Studio
+.idea/
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+!.idea/runConfigurations/
+!.idea/misc.xml
+!.idea/vcs.xml
+.idea/*workspace.xml
+.idea/*/*.iml
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+
+# Keystore files
+*.jks
+*.keystore
+
+# Other files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# MacOS
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+
+# Windows
+Thumbs.db
+
+# IntelliJ
+out/
+
+# Crashlytics / Firebase
+crashlytics-build.properties
+
+# Local test reports
+/test-output/
