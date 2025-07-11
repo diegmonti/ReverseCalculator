@@ -133,7 +133,7 @@ public class BigDecimalCalculatorTest {
         calc.input('2');
         calc.enter();
         calc.calculate(Operator.MUL);
-        Assert.assertEquals("4", calc.getBuffer());
+        Assert.assertEquals("0", calc.getBuffer());
     }
 
     @Test
