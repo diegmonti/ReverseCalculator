@@ -48,7 +48,7 @@ public class BigDecimalCalculator implements CalculatorInterface {
     @Override
     public void enter() {
         stack.push(buffer);
-        enter = true;
+        resetBuffer();
     }
 
     @Override
