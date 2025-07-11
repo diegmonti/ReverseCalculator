@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/buffer"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:padding="16dp"
-        android:textAppearance="@style/TextAppearance.Material3.DisplayMedium" />
+        android:padding="24dp"
+        android:textAppearance="@style/TextAppearance.Material3.DisplayLarge"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TableLayout
+        android:id="@+id/keypad"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:stretchColumns="*">
+        android:layout_margin="8dp"
+        android:stretchColumns="*"
+        app:layout_constraintTop_toBottomOf="@id/buffer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -26,29 +34,28 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_span="2"
                 android:onClick="enter"
-                android:text="@string/enter"
-                android:textSize="24sp" />
+                android:text="@string/enter" />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:onClick="cl"
                 android:text="@string/cl"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:onClick="clr"
                 android:text="@string/clr"
-                android:textSize="24sp" />
+ />
 
         </TableRow>
 
@@ -58,36 +65,32 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="div"
                 android:text="@string/div"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="_7"
                 android:text="@string/_7"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="_8"
                 android:text="@string/_8"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="_9"
                 android:text="@string/_9"
-                android:textSize="24sp" />
+ />
 
         </TableRow>
 
@@ -97,36 +100,32 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="mul"
                 android:text="@string/mul"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="_4"
                 android:text="@string/_4"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="_5"
                 android:text="@string/_5"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="_6"
                 android:text="@string/_6"
-                android:textSize="24sp" />
+ />
 
         </TableRow>
 
@@ -136,36 +135,32 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="sub"
                 android:text="@string/sub"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="_1"
                 android:text="@string/_1"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="_2"
                 android:text="@string/_2"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="_3"
                 android:text="@string/_3"
-                android:textSize="24sp" />
+ />
 
         </TableRow>
 
@@ -175,39 +170,35 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="add"
                 android:text="@string/add"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="_0"
                 android:text="@string/_0"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="sep"
                 android:text="@string/sep"
-                android:textSize="24sp" />
+ />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/CalcButton"
+                android:layout_width="0dp"
                 android:onClick="cs"
                 android:text="@string/cs"
-                android:textSize="24sp" />
+ />
 
         </TableRow>
 
     </TableLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
