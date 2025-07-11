@@ -136,7 +136,7 @@ public class BigDecimalCalculatorTest {
     }
 
     @Test
-    public void mulWithoutSecondOperand() {
+    public void mulEmptyBuffer() {
         calc.input('2');
         calc.enter();
         calc.calculate(Operator.MUL);
