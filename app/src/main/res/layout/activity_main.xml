@@ -34,7 +34,7 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/ActionButton"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_span="2"
@@ -42,20 +42,20 @@
                 android:text="@string/enter" />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/ActionButton"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:onClick="cl"
                 android:text="@string/cl"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/ActionButton"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:onClick="clr"
                 android:text="@string/clr"
- />
+/>
 
         </TableRow>
 
@@ -65,32 +65,32 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/ActionButton"
                 android:layout_width="0dp"
                 android:onClick="div"
                 android:text="@string/div"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/DigitButton"
                 android:layout_width="0dp"
                 android:onClick="_7"
                 android:text="@string/_7"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/DigitButton"
                 android:layout_width="0dp"
                 android:onClick="_8"
                 android:text="@string/_8"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/DigitButton"
                 android:layout_width="0dp"
                 android:onClick="_9"
                 android:text="@string/_9"
- />
+/>
 
         </TableRow>
 
@@ -100,32 +100,32 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/ActionButton"
                 android:layout_width="0dp"
                 android:onClick="mul"
                 android:text="@string/mul"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/DigitButton"
                 android:layout_width="0dp"
                 android:onClick="_4"
                 android:text="@string/_4"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/DigitButton"
                 android:layout_width="0dp"
                 android:onClick="_5"
                 android:text="@string/_5"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/DigitButton"
                 android:layout_width="0dp"
                 android:onClick="_6"
                 android:text="@string/_6"
- />
+/>
 
         </TableRow>
 
@@ -135,32 +135,32 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/ActionButton"
                 android:layout_width="0dp"
                 android:onClick="sub"
                 android:text="@string/sub"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/DigitButton"
                 android:layout_width="0dp"
                 android:onClick="_1"
                 android:text="@string/_1"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/DigitButton"
                 android:layout_width="0dp"
                 android:onClick="_2"
                 android:text="@string/_2"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/DigitButton"
                 android:layout_width="0dp"
                 android:onClick="_3"
                 android:text="@string/_3"
- />
+/>
 
         </TableRow>
 
@@ -170,32 +170,32 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/ActionButton"
                 android:layout_width="0dp"
                 android:onClick="add"
                 android:text="@string/add"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/DigitButton"
                 android:layout_width="0dp"
                 android:onClick="_0"
                 android:text="@string/_0"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/DigitButton"
                 android:layout_width="0dp"
                 android:onClick="sep"
                 android:text="@string/sep"
- />
+/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/CalcButton"
+                style="@style/ActionButton"
                 android:layout_width="0dp"
                 android:onClick="cs"
                 android:text="@string/cs"
- />
+/>
 
         </TableRow>
 
