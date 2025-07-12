@@ -3,6 +3,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="digitButton">#4CAF50</color>
-    <color name="actionButton">#F44336</color>
+    <color name="calcButtonText">#FFFFFF</color>
+    <color name="digitButton">#A2A2A2</color>
+    <color name="operatorButton">#F57C00</color>
+    <color name="enterButton">#FF9800</color>
+    <color name="functionButton">#5D5D5D</color>
 </resources>

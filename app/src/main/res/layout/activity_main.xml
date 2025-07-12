@@ -34,7 +34,7 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/ActionButton"
+                style="@style/EnterButton"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_span="2"
@@ -42,7 +42,7 @@
                 android:text="@string/enter" />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/ActionButton"
+                style="@style/FunctionButton"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:onClick="cl"
@@ -50,7 +50,7 @@
 />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/ActionButton"
+                style="@style/FunctionButton"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:onClick="clr"
@@ -65,7 +65,7 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/ActionButton"
+                style="@style/OperatorButton"
                 android:layout_width="0dp"
                 android:onClick="div"
                 android:text="@string/div"
@@ -100,7 +100,7 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/ActionButton"
+                style="@style/OperatorButton"
                 android:layout_width="0dp"
                 android:onClick="mul"
                 android:text="@string/mul"
@@ -135,7 +135,7 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/ActionButton"
+                style="@style/OperatorButton"
                 android:layout_width="0dp"
                 android:onClick="sub"
                 android:text="@string/sub"
@@ -170,11 +170,18 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/ActionButton"
+                style="@style/OperatorButton"
                 android:layout_width="0dp"
                 android:onClick="add"
                 android:text="@string/add"
 />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/DigitButton"
+                android:layout_width="0dp"
+                android:onClick="cs"
+                android:text="@string/cs"
+                />
 
             <com.google.android.material.button.MaterialButton
                 style="@style/DigitButton"
@@ -188,13 +195,6 @@
                 android:layout_width="0dp"
                 android:onClick="sep"
                 android:text="@string/sep"
-/>
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/ActionButton"
-                android:layout_width="0dp"
-                android:onClick="cs"
-                android:text="@string/cs"
 />
 
         </TableRow>

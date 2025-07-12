@@ -12,14 +12,23 @@
         <item name="android:layout_weight">1</item>
         <item name="android:layout_margin">4dp</item>
         <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/calcButtonText</item>
     </style>
 
     <style name="DigitButton" parent="CalcButton">
         <item name="backgroundTint">@color/digitButton</item>
     </style>
 
-    <style name="ActionButton" parent="CalcButton">
-        <item name="backgroundTint">@color/actionButton</item>
+    <style name="OperatorButton" parent="CalcButton">
+        <item name="backgroundTint">@color/operatorButton</item>
+    </style>
+
+    <style name="EnterButton" parent="CalcButton">
+        <item name="backgroundTint">@color/enterButton</item>
+    </style>
+
+    <style name="FunctionButton" parent="CalcButton">
+        <item name="backgroundTint">@color/functionButton</item>
     </style>
 
 </resources>

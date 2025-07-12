@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#00574B</color>
-    <color name="colorPrimaryDark">#003d33</color>
-    <color name="colorAccent">#ff4081</color>
-    <color name="digitButton">#2e7d32</color>
-    <color name="actionButton">#c62828</color>
+    <color name="colorPrimaryDark">#003D33</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="calcButtonText">#000000</color>
+    <color name="digitButton">#D1D1D1</color>
+    <color name="operatorButton">#FFB74D</color>
+    <color name="enterButton">#FF9800</color>
+    <color name="functionButton">#888888</color>
 </resources>
