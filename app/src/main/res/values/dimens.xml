@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="calc_button_text">28sp</dimen>
+    <dimen name="layout_margin">8dp</dimen>
+    <dimen name="state_margin_top">24dp</dimen>
+    <dimen name="buffer_padding_horizontal">24dp</dimen>
+    <dimen name="buffer_padding_vertical">24dp</dimen>
+</resources>
