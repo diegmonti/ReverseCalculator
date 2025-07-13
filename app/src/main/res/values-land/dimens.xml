@@ -1,3 +1,8 @@
 <resources>
-    <dimen name="calc_button_text_size">18sp</dimen>
+    <dimen name="calc_button_text">18sp</dimen>
+    <dimen name="layout_margin">12dp</dimen>
+    <dimen name="state_margin_top">24dp</dimen>
+    <dimen name="buffer_padding_horizontal">24dp</dimen>
+    <dimen name="buffer_padding_vertical">0dp</dimen>
 </resources>
+
