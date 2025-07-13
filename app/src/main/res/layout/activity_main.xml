@@ -7,13 +7,24 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:padding="8dp"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/buffer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="end"
         android:padding="24dp"
         android:textAppearance="@style/TextAppearance.Material3.DisplayLarge"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/state"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
