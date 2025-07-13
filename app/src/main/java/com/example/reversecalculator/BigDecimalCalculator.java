@@ -83,6 +83,7 @@ public class BigDecimalCalculator implements CalculatorInterface {
         }
 
         buffer = res;
+        enter = true;
     }
 
     @Override

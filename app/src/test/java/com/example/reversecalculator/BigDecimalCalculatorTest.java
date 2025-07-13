@@ -120,6 +120,17 @@ public class BigDecimalCalculatorTest {
     }
 
     @Test
+    public void resetCalculate() {
+        calc.input('1');
+        calc.enter();
+        calc.input('2');
+        calc.calculate(Operator.ADD);
+        Assert.assertEquals("3", calc.getBuffer());
+        calc.input('1');
+        Assert.assertEquals("1", calc.getBuffer());
+    }
+
+    @Test
     public void changeSign() {
         calc.input('1');
         calc.changeSign();
