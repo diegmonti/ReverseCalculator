@@ -9,6 +9,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView buffer;
+    private TextView state;
     private CalculatorInterface calc;
 
     @Override
@@ -17,11 +18,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         calc = new BigDecimalCalculator();
         buffer = findViewById(R.id.buffer);
+        state = findViewById(R.id.state);
         updateBuffer();
     }
 
     private void updateBuffer() {
         buffer.setText(calc.getBuffer());
+        state.setText(calc.getBufferState());
     }
 
     public void enter(View view) {

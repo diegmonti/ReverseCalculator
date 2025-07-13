@@ -17,6 +17,13 @@ public interface CalculatorInterface {
     String getBuffer();
 
     /**
+     * Return the current buffer state, e.g. the stack contents.
+     *
+     * @return a textual representation of the stack
+     */
+    String getBufferState();
+
+    /**
      * Push the buffer in the stack.
      */
     void enter();

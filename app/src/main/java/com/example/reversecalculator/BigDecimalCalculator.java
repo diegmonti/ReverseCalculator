@@ -103,4 +103,9 @@ public class BigDecimalCalculator implements CalculatorInterface {
         resetBuffer();
         stack = new Stack<>();
     }
+
+    @Override
+    public String getBufferState() {
+        return stack.toString();
+    }
 }
