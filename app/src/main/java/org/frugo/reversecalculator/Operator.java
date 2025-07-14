@@ -1,4 +1,4 @@
-package com.example.reversecalculator;
+package org.frugo.reversecalculator;
 
 public enum Operator {
     ADD, SUB, MUL, DIV

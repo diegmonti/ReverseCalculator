@@ -1,4 +1,4 @@
-package com.example.reversecalculator;
+package org.frugo.reversecalculator;
 
 import org.junit.Assert;
 import org.junit.Before;
