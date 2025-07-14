@@ -1,4 +1,4 @@
-package com.example.reversecalculator;
+package org.frugo.reversecalculator;
 
 import java.util.EmptyStackException;
 import java.util.Stack;

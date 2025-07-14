@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "com.example.reversecalculator"
+    namespace "org.frugo.reversecalculator"
     compileSdkVersion 35
     buildToolsVersion "35.0.0"
     defaultConfig {
-        applicationId "com.example.reversecalculator"
+        applicationId "org.frugo.reversecalculator"
         minSdkVersion 21
         targetSdkVersion 35
         versionCode 1
