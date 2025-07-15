@@ -42,9 +42,9 @@ jobs:
           log-accepted-android-sdk-licenses: false
       - name: Decode Keystore
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > app/release.jks
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/release.jks
       - name: Build Release APK
-        run: ./gradlew assembleRelease -Pandroid.injected.signing.store.file=release.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
+        run: ./gradlew assembleRelease -Pandroid.injected.signing.store.file=${{ github.workspace }}/release.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
       - name: Upload to GitHub Releases
         uses: softprops/action-gh-release@v2
         with:
