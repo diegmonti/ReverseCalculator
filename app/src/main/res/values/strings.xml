@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Reverse Calculator</string>
+    <string name="app_name">Reverse Calc</string>
     <string name="enter">ENTER</string>
     <string name="cl">CL</string>
     <string name="clr">CLR</string>
