@@ -175,4 +175,15 @@ public class BigDecimalCalculatorTest {
         Assert.assertEquals("10", calc.getBuffer());
     }
 
+    @Test
+    public void decimalExpression() {
+        calc.input('.');
+        calc.input('5');
+        calc.enter();
+        calc.input('.');
+        calc.input('5');
+        calc.calculate(Operator.ADD);
+        Assert.assertEquals("1", calc.getBuffer());
+    }
+
 }
