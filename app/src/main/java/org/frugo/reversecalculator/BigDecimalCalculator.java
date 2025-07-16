@@ -42,7 +42,7 @@ public class BigDecimalCalculator implements CalculatorInterface {
         if (error) {
             return "ERROR";
         }
-        return buffer.toString();
+        return buffer.stripTrailingZeros().toPlainString();
     }
 
     @Override
@@ -64,20 +64,12 @@ public class BigDecimalCalculator implements CalculatorInterface {
         BigDecimal res = BigDecimal.ZERO;
 
         try {
-            switch (operator) {
-                case ADD:
-                    res = o1.add(o2);
-                    break;
-                case SUB:
-                    res = o1.subtract(o2);
-                    break;
-                case MUL:
-                    res = o1.multiply(o2);
-                    break;
-                case DIV:
-                    res = o1.divide(o2, MathContext.DECIMAL32);
-                    break;
-            }
+            res = switch (operator) {
+                case ADD -> o1.add(o2);
+                case SUB -> o1.subtract(o2);
+                case MUL -> o1.multiply(o2);
+                case DIV -> o1.divide(o2, MathContext.DECIMAL32);
+            };
         } catch (ArithmeticException e) {
             error = true;
         }
