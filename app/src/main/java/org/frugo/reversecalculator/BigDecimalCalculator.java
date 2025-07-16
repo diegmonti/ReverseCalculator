@@ -42,7 +42,7 @@ public class BigDecimalCalculator implements CalculatorInterface {
         if (error) {
             return "ERROR";
         }
-        return buffer.stripTrailingZeros().toPlainString();
+        return buffer.toString();
     }
 
     @Override
@@ -74,7 +74,15 @@ public class BigDecimalCalculator implements CalculatorInterface {
             error = true;
         }
 
-        buffer = res;
+        BigDecimal stripped = res.stripTrailingZeros();
+
+        // Remove decimal part when it is zero
+        if (stripped.scale() <= 0) {
+            buffer = new BigDecimal(stripped.toBigInteger());
+        } else {
+            buffer = stripped;
+        }
+
         enter = true;
     }
 
