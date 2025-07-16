@@ -2,17 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/state"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:paddingHorizontal="@dimen/layout_margin"
-        android:layout_marginTop="@dimen/state_margin_top"
+        android:paddingHorizontal="@dimen/padding_horizontal"
         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +22,8 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/buffer"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="end"
@@ -34,7 +38,7 @@
         android:id="@+id/keypad"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/layout_margin"
+        android:paddingHorizontal="@dimen/padding_horizontal"
         android:stretchColumns="*"
         app:layout_constraintTop_toBottomOf="@id/buffer"
         app:layout_constraintBottom_toBottomOf="parent"
