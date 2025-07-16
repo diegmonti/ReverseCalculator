@@ -13,7 +13,6 @@ Reverse Calculator is a simple Android application implementing a calculator tha
 * CLR clears the entire stack
 * Decimal separator and sign change support
 
-
 The user interface is built with Material 3 components and is defined in `app/src/main/res/layout/activity_main.xml`.
 
 ## Building
@@ -29,7 +28,6 @@ A recent Android SDK installation is required. If it is not automatically detect
 ## Running tests
 
 Unit tests for both calculator implementations are located under `app/src/test`. They can be executed with:
-Running tests also require the Android SDK to be installed.
 
 ```bash
 ./gradlew test
