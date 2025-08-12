@@ -19,4 +19,11 @@
     <string name="_0">0</string>
     <string name="sep">.</string>
     <string name="cs">±</string>
+    <string name="help">Help</string>
+    <string name="guide_title">RPN Guide</string>
+    <string name="guide_text">To use Reverse Polish Notation:
+1. Enter the first number and press ENTER.
+2. Enter the second number.
+3. Press the desired operator (+, -, ×, ÷) to calculate.
+Example: 3 ENTER 4 + = 7.</string>
 </resources>
