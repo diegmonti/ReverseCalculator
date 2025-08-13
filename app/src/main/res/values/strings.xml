@@ -21,9 +21,13 @@
     <string name="cs">±</string>
     <string name="help">Help</string>
     <string name="guide_title">RPN Guide</string>
-    <string name="guide_text">To use Reverse Polish Notation:
-1. Enter the first number and press ENTER.
-2. Enter the second number.
-3. Press the desired operator (+, -, ×, ÷) to calculate.
-Example: 3 ENTER 4 + = 7.</string>
+    <string name="guide_text"><![CDATA[
+        <p>To use Reverse Polish Notation:</p>
+        <ol>
+            <li>Enter the first number and press ENTER.</li>
+            <li>Enter the second number.</li>
+            <li>Press the desired operator (+, -, ×, ÷) to calculate.</li>
+        </ol>
+        <p><i>Example:</i> 3 ENTER 4 + = 7.</p>
+    ]]></string>
 </resources>
