@@ -12,7 +12,7 @@ Reverse Calculator is a simple Android application implementing a calculator tha
 * CL clears the current entry
 * CLR clears the entire stack
 * Decimal separator and sign change support
-* Help screen describing RPN usage
+* In-app help sheet describing RPN usage
 
 The user interface is built with Material 3 components and is defined in `app/src/main/res/layout/activity_main.xml`.
 

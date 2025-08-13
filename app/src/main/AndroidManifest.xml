@@ -8,8 +8,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GuideActivity"
-            android:label="@string/guide_title" />
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

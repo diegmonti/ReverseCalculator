@@ -22,12 +22,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/help_button"
-        style="@style/Widget.Material3.Button.TextButton"
+        style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="openGuide"
-        android:text="?"
         android:contentDescription="@string/help"
+        app:icon="@android:drawable/ic_menu_help"
+        android:layout_marginTop="@dimen/padding_horizontal"
+        android:layout_marginEnd="@dimen/padding_horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
