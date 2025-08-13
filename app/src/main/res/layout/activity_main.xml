@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:onClick="openGuide"
         android:contentDescription="@string/help"
-        app:icon="@drawable/help_24px"
+        app:icon="@drawable/help"
         android:layout_marginTop="@dimen/padding_horizontal"
         android:layout_marginStart="@dimen/padding_horizontal"
         app:iconTint="@color/function_button"

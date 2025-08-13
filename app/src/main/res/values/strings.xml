@@ -22,12 +22,10 @@
     <string name="help">Help</string>
     <string name="guide_title">RPN Guide</string>
     <string name="guide_text"><![CDATA[
-        <p style="margin-top:0;margin-bottom:8px;">To use Reverse Polish Notation:</p>
-        <ol style="margin-top:0;margin-bottom:8px;padding-left:24px;">
-            <li style="margin:0;">Enter the first number and press ENTER.</li>
-            <li style="margin:0;">Enter the second number.</li>
-            <li style="margin:0;">Press the desired operator (+, -, ×, ÷) to calculate.</li>
-        </ol>
-        <p style="margin-top:0;"><i>Example:</i> 3 ENTER 4 + = 7.</p>
+        <p>To use Reverse Polish Notation:</p>
+        <p>&nbsp;1. Enter the first number and press ENTER.<br/>
+        &nbsp;2. Enter the second number.<br/>
+        &nbsp;3. Press the desired operator (+, -, ×, ÷).</p>
+        <p><i>Example:</i> 3 ENTER 4 + yields 7.</p>
     ]]></string>
 </resources>
