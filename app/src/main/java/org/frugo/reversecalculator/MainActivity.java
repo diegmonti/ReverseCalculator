@@ -121,4 +121,8 @@ public class MainActivity extends AppCompatActivity {
         calc.changeSign();
         updateBuffer();
     }
+
+    public void openGuide(View view) {
+        new GuideBottomSheet().show(getSupportFragmentManager(), "guide");
+    }
 }

@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/help_button"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="openGuide"
+        android:contentDescription="@string/help"
+        app:icon="@drawable/help"
+        android:layout_marginTop="@dimen/padding_horizontal"
+        android:layout_marginStart="@dimen/padding_horizontal"
+        app:iconTint="@color/function_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/state"
         android:ellipsize="end"
@@ -17,7 +31,7 @@
         android:paddingHorizontal="@dimen/padding_horizontal"
         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/help_button"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
