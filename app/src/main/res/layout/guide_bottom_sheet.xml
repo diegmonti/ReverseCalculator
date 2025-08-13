@@ -20,7 +20,8 @@
             android:id="@+id/guideText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/padding_horizontal"
+            android:layout_marginTop="@dimen/padding_horizontal"
+            android:layout_marginBottom="@dimen/padding_horizontal"
             android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
     </LinearLayout>
 </ScrollView>

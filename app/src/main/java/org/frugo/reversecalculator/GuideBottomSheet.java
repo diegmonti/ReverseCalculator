@@ -20,7 +20,7 @@ public class GuideBottomSheet extends BottomSheetDialogFragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.guide_bottom_sheet, container, false);
         TextView guideText = view.findViewById(R.id.guideText);
-        guideText.setText(HtmlCompat.fromHtml(getString(R.string.guide_text), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        guideText.setText(HtmlCompat.fromHtml(getString(R.string.guide_text), HtmlCompat.FROM_HTML_MODE_COMPACT));
         return view;
     }
 }
