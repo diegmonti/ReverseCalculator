@@ -24,6 +24,13 @@ public interface CalculatorInterface {
     String getBufferState();
 
     /**
+     * Return the current calculator error.
+     *
+     * @return the current error, or {@link CalculatorError#NONE}
+     */
+    CalculatorError getError();
+
+    /**
      * Push the buffer in the stack.
      */
     void enter();

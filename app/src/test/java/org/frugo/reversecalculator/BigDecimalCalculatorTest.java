@@ -19,6 +19,7 @@ public class BigDecimalCalculatorTest {
     @Test
     public void initBuffer() {
         Assert.assertEquals("0", calc.getBuffer());
+        Assert.assertEquals(CalculatorError.NONE, calc.getError());
     }
 
     @Test
@@ -105,7 +106,8 @@ public class BigDecimalCalculatorTest {
         calc.input('1');
         calc.input('1');
         calc.calculate(Operator.ADD);
-        Assert.assertEquals("11", calc.getBuffer());
+        Assert.assertEquals("ERROR", calc.getBuffer());
+        Assert.assertEquals(CalculatorError.INSUFFICIENT_OPERANDS, calc.getError());
     }
 
     @Test
@@ -116,7 +118,8 @@ public class BigDecimalCalculatorTest {
         calc.reset();
         Assert.assertEquals("0", calc.getBuffer());
         calc.calculate(Operator.ADD);
-        Assert.assertEquals("0", calc.getBuffer());
+        Assert.assertEquals("ERROR", calc.getBuffer());
+        Assert.assertEquals(CalculatorError.INSUFFICIENT_OPERANDS, calc.getError());
     }
 
     @Test
@@ -189,7 +192,18 @@ public class BigDecimalCalculatorTest {
         calc.input('2');
         calc.enter();
         calc.calculate(Operator.MUL);
-        Assert.assertEquals("0", calc.getBuffer());
+        Assert.assertEquals("ERROR", calc.getBuffer());
+        Assert.assertEquals(CalculatorError.INSUFFICIENT_OPERANDS, calc.getError());
+        Assert.assertEquals("[2]", calc.getBufferState());
+    }
+
+    @Test
+    public void enterWithoutCurrentValueDoesNotPushZero() {
+        calc.enter();
+
+        Assert.assertEquals("ERROR", calc.getBuffer());
+        Assert.assertEquals(CalculatorError.INSUFFICIENT_OPERANDS, calc.getError());
+        Assert.assertEquals("[]", calc.getBufferState());
     }
 
     @Test
@@ -199,6 +213,27 @@ public class BigDecimalCalculatorTest {
         calc.input('0');
         calc.calculate(Operator.DIV);
         Assert.assertEquals("ERROR", calc.getBuffer());
+        Assert.assertEquals(CalculatorError.DIVISION_BY_ZERO, calc.getError());
+        Assert.assertEquals("[1]", calc.getBufferState());
+
+        calc.input('2');
+        calc.calculate(Operator.DIV);
+        Assert.assertEquals("0.5", calc.getBuffer());
+        Assert.assertEquals(CalculatorError.NONE, calc.getError());
+    }
+
+    @Test
+    public void divByZeroWithEnteredOperandsDoesNotConsumeStack() {
+        calc.input('1');
+        calc.enter();
+        calc.input('0');
+        calc.enter();
+
+        calc.calculate(Operator.DIV);
+
+        Assert.assertEquals("ERROR", calc.getBuffer());
+        Assert.assertEquals(CalculatorError.DIVISION_BY_ZERO, calc.getError());
+        Assert.assertEquals("[1, 0]", calc.getBufferState());
     }
 
     @Test
@@ -244,6 +279,34 @@ public class BigDecimalCalculatorTest {
         calc.calculate(Operator.DIV);
 
         Assert.assertEquals("0.0000001", calc.getBuffer());
+    }
+
+    @Test
+    public void calculateValuesAlreadyEntered() {
+        calc.input('3');
+        calc.enter();
+        calc.input('4');
+        calc.enter();
+
+        calc.calculate(Operator.ADD);
+
+        Assert.assertEquals("7", calc.getBuffer());
+        Assert.assertEquals("[]", calc.getBufferState());
+    }
+
+    @Test
+    public void insufficientOperandsDoNotConsumeStack() {
+        calc.input('2');
+        calc.enter();
+
+        calc.calculate(Operator.MUL);
+
+        Assert.assertEquals("ERROR", calc.getBuffer());
+        Assert.assertEquals("[2]", calc.getBufferState());
+
+        calc.input('3');
+        calc.calculate(Operator.MUL);
+        Assert.assertEquals("6", calc.getBuffer());
     }
 
 }
