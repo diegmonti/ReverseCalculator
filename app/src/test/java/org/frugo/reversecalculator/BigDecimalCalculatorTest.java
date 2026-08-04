@@ -140,10 +140,48 @@ public class BigDecimalCalculatorTest {
     }
 
     @Test
+    public void inputAfterSignChangeAppendsDigit() {
+        calc.input('1');
+        calc.changeSign();
+        calc.input('2');
+        Assert.assertEquals("-12", calc.getBuffer());
+    }
+
+    @Test
+    public void decimalInputAfterSignChangeAppendsDigit() {
+        calc.input('1');
+        calc.input('.');
+        calc.input('5');
+        calc.changeSign();
+        calc.input('2');
+        Assert.assertEquals("-1.52", calc.getBuffer());
+    }
+
+    @Test
     public void changeSignEmptyBuffer() {
         // change sign when no value has been entered
         calc.changeSign();
         Assert.assertEquals("0", calc.getBuffer());
+    }
+
+    @Test
+    public void invalidInputIsIgnored() {
+        calc.input('1');
+        calc.input('x');
+        Assert.assertEquals("1", calc.getBuffer());
+    }
+
+    @Test
+    public void inputIsLimitedToOneHundredDigits() {
+        for (int i = 0; i < 100; i++) {
+            calc.input('9');
+        }
+
+        String firstHundredDigits = calc.getBuffer();
+        Assert.assertEquals(100, firstHundredDigits.length());
+
+        calc.input('8');
+        Assert.assertEquals(firstHundredDigits, calc.getBuffer());
     }
 
     @Test
