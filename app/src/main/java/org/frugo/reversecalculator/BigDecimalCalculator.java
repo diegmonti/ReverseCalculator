@@ -7,34 +7,54 @@ import java.util.Stack;
 
 public class BigDecimalCalculator implements CalculatorInterface {
 
-    private BigDecimal buffer = BigDecimal.ZERO;
+    private static final int MAX_INPUT_DIGITS = 100;
+
+    private String entry = "0";
     private Stack<BigDecimal> stack = new Stack<>();
-    private int position = 1;
-    private boolean enter = false;
+    private boolean replaceEntryOnInput = false;
     private boolean error = false;
 
     @Override
     public void input(char value) {
-        if (enter) {
+        boolean isDigit = value >= '0' && value <= '9';
+        if (!isDigit && value != '.') {
+            return;
+        }
+
+        if (replaceEntryOnInput || error) {
             resetBuffer();
         }
-        if (value >= '0' && value <= '9') {
-            if (position > 0) {
-                // Integer part
-                buffer = buffer.scaleByPowerOfTen(position);
-                buffer = buffer.add(
-                        new BigDecimal(Character.getNumericValue(value)));
-            } else {
-                // Decimal part
-                BigDecimal decimal = new BigDecimal(
-                        Character.getNumericValue(value));
-                decimal = decimal.scaleByPowerOfTen(position);
-                buffer = buffer.add(decimal);
-                position -= 1;
-            }
-        } else if (value == '.' && position == 1) {
-            position = -1;
+
+        if (isDigit) {
+            appendDigit(value);
+        } else if (!entry.contains(".")) {
+            entry += ".";
         }
+    }
+
+    private void appendDigit(char value) {
+        if (hasReachedDigitLimit()) {
+            return;
+        }
+
+        if (entry.equals("0")) {
+            entry = Character.toString(value);
+        } else if (entry.equals("-0")) {
+            entry = "-" + value;
+        } else {
+            entry += value;
+        }
+    }
+
+    private boolean hasReachedDigitLimit() {
+        int digitCount = 0;
+        for (int index = 0; index < entry.length(); index++) {
+            char character = entry.charAt(index);
+            if (character >= '0' && character <= '9') {
+                digitCount++;
+            }
+        }
+        return digitCount >= MAX_INPUT_DIGITS;
     }
 
     @Override
@@ -42,12 +62,12 @@ public class BigDecimalCalculator implements CalculatorInterface {
         if (error) {
             return "ERROR";
         }
-        return buffer.toString();
+        return entry;
     }
 
     @Override
     public void enter() {
-        stack.push(buffer);
+        stack.push(parseEntry());
         resetBuffer();
     }
 
@@ -59,7 +79,7 @@ public class BigDecimalCalculator implements CalculatorInterface {
         } catch (EmptyStackException e) {
             // Do nothing
         }
-        BigDecimal o2 = buffer;
+        BigDecimal o2 = parseEntry();
 
         BigDecimal res = BigDecimal.ZERO;
 
@@ -74,28 +94,37 @@ public class BigDecimalCalculator implements CalculatorInterface {
             error = true;
         }
 
-        BigDecimal stripped = res.stripTrailingZeros();
-
-        // Remove decimal part when it is zero
-        if (stripped.scale() <= 0) {
-            buffer = new BigDecimal(stripped.toBigInteger());
-        } else {
-            buffer = stripped;
-        }
-
-        enter = true;
+        entry = formatResult(res);
+        replaceEntryOnInput = true;
     }
 
     @Override
     public void changeSign() {
-        buffer = buffer.negate();
+        if (error || isZeroEntry()) {
+            return;
+        }
+
+        if (entry.startsWith("-")) {
+            entry = entry.substring(1);
+        } else {
+            entry = "-" + entry;
+        }
+    }
+
+    private boolean isZeroEntry() {
+        for (int index = 0; index < entry.length(); index++) {
+            char character = entry.charAt(index);
+            if (character >= '1' && character <= '9') {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public void resetBuffer() {
-        buffer = BigDecimal.ZERO;
-        position = 1;
-        enter = false;
+        entry = "0";
+        replaceEntryOnInput = false;
         error = false;
     }
 
@@ -108,5 +137,19 @@ public class BigDecimalCalculator implements CalculatorInterface {
     @Override
     public String getBufferState() {
         return stack.toString();
+    }
+
+    private BigDecimal parseEntry() {
+        String value = entry.endsWith(".") ? entry + "0" : entry;
+        return new BigDecimal(value);
+    }
+
+    private String formatResult(BigDecimal value) {
+        BigDecimal stripped = value.stripTrailingZeros();
+
+        if (stripped.scale() <= 0) {
+            return stripped.toBigInteger().toString();
+        }
+        return stripped.toString();
     }
 }
