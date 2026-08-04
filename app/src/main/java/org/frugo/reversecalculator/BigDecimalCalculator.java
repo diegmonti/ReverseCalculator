@@ -2,8 +2,9 @@ package org.frugo.reversecalculator;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.EmptyStackException;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Iterator;
 
 public class BigDecimalCalculator implements CalculatorInterface {
 
@@ -11,9 +12,10 @@ public class BigDecimalCalculator implements CalculatorInterface {
     private static final MathContext DIVISION_CONTEXT = MathContext.DECIMAL128;
 
     private String entry = "0";
-    private Stack<BigDecimal> stack = new Stack<>();
+    private final Deque<BigDecimal> stack = new ArrayDeque<>();
     private boolean replaceEntryOnInput = false;
-    private boolean error = false;
+    private boolean hasCurrentValue = false;
+    private CalculatorError error = CalculatorError.NONE;
 
     @Override
     public void input(char value) {
@@ -22,7 +24,7 @@ public class BigDecimalCalculator implements CalculatorInterface {
             return;
         }
 
-        if (replaceEntryOnInput || error) {
+        if (replaceEntryOnInput || error != CalculatorError.NONE) {
             resetBuffer();
         }
 
@@ -31,6 +33,7 @@ public class BigDecimalCalculator implements CalculatorInterface {
         } else if (!entry.contains(".")) {
             entry += ".";
         }
+        hasCurrentValue = true;
     }
 
     private void appendDigit(char value) {
@@ -60,7 +63,7 @@ public class BigDecimalCalculator implements CalculatorInterface {
 
     @Override
     public String getBuffer() {
-        if (error) {
+        if (error != CalculatorError.NONE) {
             return "ERROR";
         }
         return entry;
@@ -68,19 +71,43 @@ public class BigDecimalCalculator implements CalculatorInterface {
 
     @Override
     public void enter() {
-        stack.push(parseEntry());
+        if (!hasCurrentValue) {
+            error = CalculatorError.INSUFFICIENT_OPERANDS;
+            return;
+        }
+        stack.addLast(parseEntry());
         resetBuffer();
     }
 
     @Override
     public void calculate(Operator operator) {
-        BigDecimal o1 = BigDecimal.ZERO;
-        try {
-            o1 = stack.pop();
-        } catch (EmptyStackException e) {
-            // Do nothing
+        error = CalculatorError.NONE;
+
+        boolean usesEntry = hasCurrentValue;
+        BigDecimal o1;
+        BigDecimal o2;
+
+        if (usesEntry) {
+            if (stack.isEmpty()) {
+                error = CalculatorError.INSUFFICIENT_OPERANDS;
+                return;
+            }
+            o1 = stack.peekLast();
+            o2 = parseEntry();
+        } else {
+            if (stack.size() < 2) {
+                error = CalculatorError.INSUFFICIENT_OPERANDS;
+                return;
+            }
+            Iterator<BigDecimal> operands = stack.descendingIterator();
+            o2 = operands.next();
+            o1 = operands.next();
         }
-        BigDecimal o2 = parseEntry();
+
+        if (operator == Operator.DIV && o2.compareTo(BigDecimal.ZERO) == 0) {
+            error = CalculatorError.DIVISION_BY_ZERO;
+            return;
+        }
 
         BigDecimal res = BigDecimal.ZERO;
 
@@ -92,16 +119,23 @@ public class BigDecimalCalculator implements CalculatorInterface {
                 case DIV -> o1.divide(o2, DIVISION_CONTEXT);
             };
         } catch (ArithmeticException e) {
-            error = true;
+            error = CalculatorError.ARITHMETIC_ERROR;
+            return;
+        }
+
+        stack.removeLast();
+        if (!usesEntry) {
+            stack.removeLast();
         }
 
         entry = formatResult(res);
         replaceEntryOnInput = true;
+        hasCurrentValue = true;
     }
 
     @Override
     public void changeSign() {
-        if (error || isZeroEntry()) {
+        if (!hasCurrentValue || error != CalculatorError.NONE || isZeroEntry()) {
             return;
         }
 
@@ -126,18 +160,24 @@ public class BigDecimalCalculator implements CalculatorInterface {
     public void resetBuffer() {
         entry = "0";
         replaceEntryOnInput = false;
-        error = false;
+        hasCurrentValue = false;
+        error = CalculatorError.NONE;
     }
 
     @Override
     public void reset() {
         resetBuffer();
-        stack = new Stack<>();
+        stack.clear();
     }
 
     @Override
     public String getBufferState() {
         return stack.toString();
+    }
+
+    @Override
+    public CalculatorError getError() {
+        return error;
     }
 
     private BigDecimal parseEntry() {

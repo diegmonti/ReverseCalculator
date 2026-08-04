@@ -1,14 +1,19 @@
 package org.frugo.reversecalculator;
 
-import java.util.EmptyStackException;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Iterator;
 
 public class BasicCalculator implements CalculatorInterface {
     private String buffer = "";
-    private Stack<String> stack = new Stack<>();
+    private final Deque<String> stack = new ArrayDeque<>();
+    private CalculatorError error = CalculatorError.NONE;
 
     @Override
     public void input(char value) {
+        if (error != CalculatorError.NONE) {
+            resetBuffer();
+        }
         if (value == '.' && buffer.contains("."))
             return;
         buffer += Character.toString(value);
@@ -16,6 +21,9 @@ public class BasicCalculator implements CalculatorInterface {
 
     @Override
     public String getBuffer() {
+        if (error != CalculatorError.NONE) {
+            return "ERROR";
+        }
         if (buffer.equals("")) {
             return "0";
         } else {
@@ -25,20 +33,44 @@ public class BasicCalculator implements CalculatorInterface {
 
     @Override
     public void enter() {
-        stack.push(getBuffer());
+        if (buffer.isEmpty()) {
+            error = CalculatorError.INSUFFICIENT_OPERANDS;
+            return;
+        }
+        stack.addLast(buffer);
         resetBuffer();
     }
 
     @Override
     public void calculate(Operator operator) {
-        String stackValue = "0";
-        try {
-            stackValue = stack.pop();
-        } catch (EmptyStackException e) {
-            // Do nothing
+        error = CalculatorError.NONE;
+
+        boolean usesBuffer = !buffer.isEmpty();
+        double o1;
+        double o2;
+
+        if (usesBuffer) {
+            if (stack.isEmpty()) {
+                error = CalculatorError.INSUFFICIENT_OPERANDS;
+                return;
+            }
+            o1 = Double.parseDouble(stack.peekLast());
+            o2 = Double.parseDouble(buffer);
+        } else {
+            if (stack.size() < 2) {
+                error = CalculatorError.INSUFFICIENT_OPERANDS;
+                return;
+            }
+            Iterator<String> operands = stack.descendingIterator();
+            o2 = Double.parseDouble(operands.next());
+            o1 = Double.parseDouble(operands.next());
         }
-        double o1 = Double.parseDouble(stackValue);
-        double o2 = Double.parseDouble(getBuffer());
+
+        if (operator == Operator.DIV && o2 == 0.0d) {
+            error = CalculatorError.DIVISION_BY_ZERO;
+            return;
+        }
+
         double res = 0.0;
 
         switch (operator) {
@@ -56,12 +88,24 @@ public class BasicCalculator implements CalculatorInterface {
                 break;
         }
 
+        if (!Double.isFinite(res)) {
+            error = CalculatorError.ARITHMETIC_ERROR;
+            return;
+        }
+
+        stack.removeLast();
+        if (!usesBuffer) {
+            stack.removeLast();
+        }
         buffer = String.valueOf(res);
     }
 
     @Override
     public void changeSign() {
-        double value = Double.parseDouble(getBuffer());
+        if (buffer.isEmpty() || error != CalculatorError.NONE) {
+            return;
+        }
+        double value = Double.parseDouble(buffer);
         value *= -1;
         // Avoid "-0.0" when the buffer was empty or zero
         if (value == -0.0)
@@ -72,16 +116,22 @@ public class BasicCalculator implements CalculatorInterface {
     @Override
     public void resetBuffer() {
         buffer = "";
+        error = CalculatorError.NONE;
     }
 
     @Override
     public void reset() {
         resetBuffer();
-        stack = new Stack<>();
+        stack.clear();
     }
 
     @Override
     public String getBufferState() {
         return stack.toString();
+    }
+
+    @Override
+    public CalculatorError getError() {
+        return error;
     }
 }
