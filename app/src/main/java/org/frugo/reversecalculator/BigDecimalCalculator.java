@@ -8,6 +8,7 @@ import java.util.Stack;
 public class BigDecimalCalculator implements CalculatorInterface {
 
     private static final int MAX_INPUT_DIGITS = 100;
+    private static final MathContext DIVISION_CONTEXT = MathContext.DECIMAL128;
 
     private String entry = "0";
     private Stack<BigDecimal> stack = new Stack<>();
@@ -88,7 +89,7 @@ public class BigDecimalCalculator implements CalculatorInterface {
                 case ADD -> o1.add(o2);
                 case SUB -> o1.subtract(o2);
                 case MUL -> o1.multiply(o2);
-                case DIV -> o1.divide(o2, MathContext.DECIMAL32);
+                case DIV -> o1.divide(o2, DIVISION_CONTEXT);
             };
         } catch (ArithmeticException e) {
             error = true;
@@ -144,12 +145,7 @@ public class BigDecimalCalculator implements CalculatorInterface {
         return new BigDecimal(value);
     }
 
-    private String formatResult(BigDecimal value) {
-        BigDecimal stripped = value.stripTrailingZeros();
-
-        if (stripped.scale() <= 0) {
-            return stripped.toBigInteger().toString();
-        }
-        return stripped.toString();
+    private static String formatResult(BigDecimal value) {
+        return value.stripTrailingZeros().toPlainString();
     }
 }

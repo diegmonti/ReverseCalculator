@@ -16,6 +16,10 @@ Reverse Calculator is a simple Android application implementing a calculator tha
 
 The user interface is built with Material 3 components and is defined in `app/src/main/res/layout/activity_main.xml`.
 
+## Precision
+
+`BigDecimalCalculator` performs addition, subtraction and multiplication exactly. Division uses `MathContext.DECIMAL128`, which provides 34 significant digits with `HALF_EVEN` rounding. Results are displayed in plain decimal notation with unnecessary trailing zeros removed.
+
 ## Building
 
 This project uses the Gradle build system. You can open the repository directly with **Android Studio** or build from the command line:
