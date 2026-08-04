@@ -224,4 +224,26 @@ public class BigDecimalCalculatorTest {
         Assert.assertEquals("1", calc.getBuffer());
     }
 
+    @Test
+    public void divisionUsesDecimal128Precision() {
+        calc.input('1');
+        calc.enter();
+        calc.input('3');
+        calc.calculate(Operator.DIV);
+
+        Assert.assertEquals("0.3333333333333333333333333333333333", calc.getBuffer());
+    }
+
+    @Test
+    public void smallResultUsesPlainNotation() {
+        calc.input('1');
+        calc.enter();
+        for (char digit : "10000000".toCharArray()) {
+            calc.input(digit);
+        }
+        calc.calculate(Operator.DIV);
+
+        Assert.assertEquals("0.0000001", calc.getBuffer());
+    }
+
 }
