@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_primary">#00574B</color>
-    <color name="color_primary_dark">#003D33</color>
     <color name="color_accent">#FF4081</color>
     <color name="calc_button_text">#000000</color>
     <color name="digit_button">#D1D1D1</color>

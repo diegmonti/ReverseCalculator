@@ -4,6 +4,9 @@ android {
     namespace "org.frugo.reversecalculator"
     compileSdkVersion 36
     buildToolsVersion "35.0.0"
+    buildFeatures {
+        viewBinding true
+    }
     defaultConfig {
         applicationId "org.frugo.reversecalculator"
         minSdkVersion 21

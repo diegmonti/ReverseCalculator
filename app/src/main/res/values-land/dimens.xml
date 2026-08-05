@@ -1,5 +1,10 @@
 <resources>
-    <dimen name="calc_button_text">14sp</dimen>
+    <dimen name="calc_button_text">16sp</dimen>
+    <dimen name="calc_button_margin_vertical">1dp</dimen>
+    <dimen name="buffer_text_min">14sp</dimen>
+    <dimen name="buffer_text_max">40sp</dimen>
+    <dimen name="buffer_height">40dp</dimen>
     <dimen name="buffer_padding_vertical">0dp</dimen>
+    <dimen name="stack_height">48dp</dimen>
+    <dimen name="stack_text">13sp</dimen>
 </resources>
-

@@ -12,41 +12,54 @@
         style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="openGuide"
         android:contentDescription="@string/help"
-        app:icon="@drawable/help"
-        android:layout_marginTop="@dimen/padding_horizontal"
         android:layout_marginStart="@dimen/padding_horizontal"
+        android:layout_marginTop="@dimen/padding_horizontal"
+        android:minWidth="@dimen/min_touch_target"
+        android:minHeight="@dimen/min_touch_target"
+        app:icon="@drawable/help"
         app:iconTint="@color/function_button"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/state"
-        android:ellipsize="end"
-        android:maxLines="1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="end"
+        android:layout_height="@dimen/stack_height"
+        android:accessibilityLiveRegion="polite"
+        android:gravity="end|bottom"
+        android:maxLines="3"
         android:paddingHorizontal="@dimen/padding_horizontal"
-        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/stack_text"
+        app:autoSizeMaxTextSize="@dimen/stack_text"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"
         app:layout_constraintStart_toEndOf="@+id/help_button"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="12\n3.5\n-7" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/buffer"
-        android:ellipsize="end"
-        android:maxLines="1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="end"
+        android:layout_height="@dimen/buffer_height"
+        android:accessibilityLiveRegion="polite"
+        android:ellipsize="end"
+        android:gravity="end|center_vertical"
         android:paddingHorizontal="@dimen/buffer_padding_horizontal"
         android:paddingVertical="@dimen/buffer_padding_vertical"
+        android:singleLine="true"
         android:textAppearance="@style/TextAppearance.Material3.DisplayLarge"
-        app:layout_constraintTop_toBottomOf="@id/state"
+        app:autoSizeMaxTextSize="@dimen/buffer_text_max"
+        app:autoSizeMinTextSize="@dimen/buffer_text_min"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/state"
+        tools:text="12345678901234567890.123456789" />
 
     <TableLayout
         android:id="@+id/keypad"
@@ -65,28 +78,29 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/enter_button"
                 style="@style/EnterButton"
                 android:layout_width="0dp"
-                android:layout_weight="3"
                 android:layout_span="2"
-                android:onClick="enter"
+                android:layout_weight="3"
+                android:contentDescription="@string/enter_description"
                 android:text="@string/enter" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/clear_entry_button"
                 style="@style/FunctionButton"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:onClick="cl"
-                android:text="@string/cl"
-/>
+                android:contentDescription="@string/clear_entry_description"
+                android:text="@string/cl" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/clear_all_button"
                 style="@style/FunctionButton"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:onClick="clr"
-                android:text="@string/clr"
-/>
+                android:contentDescription="@string/clear_all_description"
+                android:text="@string/clr" />
 
         </TableRow>
 
@@ -96,32 +110,29 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/divide_button"
                 style="@style/OperatorButton"
                 android:layout_width="0dp"
-                android:onClick="div"
-                android:text="@string/div"
-/>
+                android:contentDescription="@string/divide_description"
+                android:text="@string/div" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_7_button"
                 style="@style/DigitButton"
                 android:layout_width="0dp"
-                android:onClick="_7"
-                android:text="@string/_7"
-/>
+                android:text="@string/_7" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_8_button"
                 style="@style/DigitButton"
                 android:layout_width="0dp"
-                android:onClick="_8"
-                android:text="@string/_8"
-/>
+                android:text="@string/_8" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_9_button"
                 style="@style/DigitButton"
                 android:layout_width="0dp"
-                android:onClick="_9"
-                android:text="@string/_9"
-/>
+                android:text="@string/_9" />
 
         </TableRow>
 
@@ -131,32 +142,29 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/multiply_button"
                 style="@style/OperatorButton"
                 android:layout_width="0dp"
-                android:onClick="mul"
-                android:text="@string/mul"
-/>
+                android:contentDescription="@string/multiply_description"
+                android:text="@string/mul" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_4_button"
                 style="@style/DigitButton"
                 android:layout_width="0dp"
-                android:onClick="_4"
-                android:text="@string/_4"
-/>
+                android:text="@string/_4" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_5_button"
                 style="@style/DigitButton"
                 android:layout_width="0dp"
-                android:onClick="_5"
-                android:text="@string/_5"
-/>
+                android:text="@string/_5" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_6_button"
                 style="@style/DigitButton"
                 android:layout_width="0dp"
-                android:onClick="_6"
-                android:text="@string/_6"
-/>
+                android:text="@string/_6" />
 
         </TableRow>
 
@@ -166,32 +174,29 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/subtract_button"
                 style="@style/OperatorButton"
                 android:layout_width="0dp"
-                android:onClick="sub"
-                android:text="@string/sub"
-/>
+                android:contentDescription="@string/subtract_description"
+                android:text="@string/sub" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_1_button"
                 style="@style/DigitButton"
                 android:layout_width="0dp"
-                android:onClick="_1"
-                android:text="@string/_1"
-/>
+                android:text="@string/_1" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_2_button"
                 style="@style/DigitButton"
                 android:layout_width="0dp"
-                android:onClick="_2"
-                android:text="@string/_2"
-/>
+                android:text="@string/_2" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_3_button"
                 style="@style/DigitButton"
                 android:layout_width="0dp"
-                android:onClick="_3"
-                android:text="@string/_3"
-/>
+                android:text="@string/_3" />
 
         </TableRow>
 
@@ -201,32 +206,31 @@
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_button"
                 style="@style/OperatorButton"
                 android:layout_width="0dp"
-                android:onClick="add"
-                android:text="@string/add"
-/>
+                android:contentDescription="@string/add_description"
+                android:text="@string/add" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/sign_button"
                 style="@style/DigitButton"
                 android:layout_width="0dp"
-                android:onClick="cs"
-                android:text="@string/cs"
-                />
+                android:contentDescription="@string/change_sign_description"
+                android:text="@string/cs" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_0_button"
                 style="@style/DigitButton"
                 android:layout_width="0dp"
-                android:onClick="_0"
-                android:text="@string/_0"
-/>
+                android:text="@string/_0" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/decimal_button"
                 style="@style/DigitButton"
                 android:layout_width="0dp"
-                android:onClick="sep"
-                android:text="@string/sep"
-/>
+                android:contentDescription="@string/decimal_separator_description"
+                android:text="@string/sep" />
 
         </TableRow>
 
