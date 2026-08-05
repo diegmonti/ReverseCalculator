@@ -1,6 +1,7 @@
 # Built files
 /build/
 */build/
+/app/release/
 
 # Gradle
 .gradle/
