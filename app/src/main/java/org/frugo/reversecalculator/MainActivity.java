@@ -5,6 +5,7 @@ import androidx.annotation.StringRes;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
@@ -79,12 +80,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDisplay() {
-        String value = calc.getError() == CalculatorError.NONE
+        boolean hasError = calc.getError() != CalculatorError.NONE;
+        configureBuffer(hasError);
+        String value = !hasError
                 ? localizeDecimalSeparator(calc.getBuffer())
                 : getString(errorMessage(calc.getError()));
         binding.buffer.setText(value);
         binding.buffer.setContentDescription(getString(R.string.current_value_description, value));
         updateStackDisplay(calc.getBufferState());
+    }
+
+    private void configureBuffer(boolean hasError) {
+        binding.buffer.setSingleLine(!hasError);
+        binding.buffer.setMaxLines(hasError ? 2 : 1);
+        binding.buffer.setEllipsize(hasError ? null : TextUtils.TruncateAt.END);
     }
 
     private void updateStackDisplay(String rawState) {

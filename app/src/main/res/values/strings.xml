@@ -40,10 +40,10 @@
     <string name="guide_title">RPN Guide</string>
     <string name="guide_text"><![CDATA[
         <p>To use Reverse Polish Notation:</p>
-        <p>&nbsp;1. Enter the first number and press ENTER.<br/>
-        &nbsp;2. Enter the second number.<br/>
-        &nbsp;3. Press the desired operator (+, -, ×, ÷).</p>
+        <p>&nbsp;1. Type a number and press&nbsp;ENTER.<br/>
+        &nbsp;2. Type the next number.<br/>
+        &nbsp;3. Choose an operator (+, -, × or&nbsp;÷).</p>
         <p><i>Example:</i> 3 ENTER 4 + yields 7.</p>
-        <p>The display shows up to three stack values. The bottom line is the top of the stack.</p>
+        <p>The display shows the last three stack values; the bottom line is the&nbsp;top.</p>
     ]]></string>
 </resources>
