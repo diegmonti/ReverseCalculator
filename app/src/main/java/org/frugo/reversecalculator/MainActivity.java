@@ -1,6 +1,7 @@
 package org.frugo.reversecalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +11,13 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView buffer;
     private TextView state;
-    private CalculatorInterface calc;
+    private CalculatorViewModel calc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        calc = new BigDecimalCalculator();
+        calc = new ViewModelProvider(this).get(CalculatorViewModel.class);
         buffer = findViewById(R.id.buffer);
         state = findViewById(R.id.state);
         updateBuffer();
