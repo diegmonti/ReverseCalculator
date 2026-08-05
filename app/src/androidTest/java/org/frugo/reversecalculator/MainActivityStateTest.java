@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -12,8 +13,11 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.os.SystemClock;
 import android.text.Layout;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.test.core.app.ActivityScenario;
@@ -26,6 +30,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityStateTest {
+
+    private static final long ACTIVITY_READY_TIMEOUT_MS = 10_000;
+    private static final long ACTIVITY_READY_POLL_INTERVAL_MS = 50;
 
     @Test
     public void calculatorStateSurvivesActivityRecreation() {
@@ -109,6 +116,7 @@ public class MainActivityStateTest {
         try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
             scenario.onActivity(activity -> activity.setRequestedOrientation(
                     ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE));
+            waitForLandscapeLayout(scenario);
 
             for (int buttonId : new int[]{R.id.enter_button, R.id.clear_entry_button,
                     R.id.clear_all_button, R.id.add_button, R.id.digit_8_button}) {
@@ -126,5 +134,35 @@ public class MainActivityStateTest {
                 });
             }
         }
+    }
+
+    private static void waitForLandscapeLayout(ActivityScenario<MainActivity> scenario) {
+        long deadline = SystemClock.uptimeMillis() + ACTIVITY_READY_TIMEOUT_MS;
+        AtomicInteger lastOrientation = new AtomicInteger(Configuration.ORIENTATION_UNDEFINED);
+
+        while (SystemClock.uptimeMillis() < deadline) {
+            boolean[] ready = {false};
+            try {
+                scenario.onActivity(activity -> {
+                    lastOrientation.set(activity.getResources().getConfiguration().orientation);
+                    View enterButton = activity.findViewById(R.id.enter_button);
+                    ready[0] = lastOrientation.get() == Configuration.ORIENTATION_LANDSCAPE
+                            && activity.hasWindowFocus()
+                            && enterButton != null
+                            && enterButton.isLaidOut()
+                            && !enterButton.isLayoutRequested();
+                });
+            } catch (IllegalStateException ignored) {
+                // The previous Activity may be between DESTROYED and the replacement RESUMED state.
+            }
+
+            if (ready[0]) {
+                return;
+            }
+            SystemClock.sleep(ACTIVITY_READY_POLL_INTERVAL_MS);
+        }
+
+        fail("Landscape Activity did not gain focus and finish layout within "
+                + ACTIVITY_READY_TIMEOUT_MS + " ms; last orientation=" + lastOrientation.get());
     }
 }
