@@ -25,7 +25,19 @@ public class MainActivityStateTest {
             scenario.recreate();
 
             onView(withId(R.id.buffer)).check(matches(withText("2")));
-            onView(withId(R.id.state)).check(matches(withText("[1]")));
+            onView(withId(R.id.state)).check(matches(withText("1")));
+        }
+    }
+
+    @Test
+    public void explicitButtonListenersPerformCalculation() {
+        try (ActivityScenario<MainActivity> ignored = ActivityScenario.launch(MainActivity.class)) {
+            onView(withId(R.id.digit_3_button)).perform(click());
+            onView(withId(R.id.enter_button)).perform(click());
+            onView(withId(R.id.digit_4_button)).perform(click());
+            onView(withId(R.id.add_button)).perform(click());
+
+            onView(withId(R.id.buffer)).check(matches(withText("7")));
         }
     }
 }

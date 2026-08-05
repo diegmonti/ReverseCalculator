@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Reverse Calc</string>
+    <string name="enter">INVIO</string>
+    <string name="cl">CE</string>
+    <string name="clr">C</string>
+    <string name="div">÷</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="mul">×</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="sub">−</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="add">+</string>
+    <string name="_0">0</string>
+    <string name="sep">,</string>
+    <string name="cs">±</string>
+    <string name="help">Apri la guida RPN</string>
+    <string name="enter_description">Inserisci il valore nello stack</string>
+    <string name="clear_entry_description">Cancella il valore corrente</string>
+    <string name="clear_all_description">Cancella il valore e lo stack</string>
+    <string name="divide_description">Dividi</string>
+    <string name="multiply_description">Moltiplica</string>
+    <string name="subtract_description">Sottrai</string>
+    <string name="add_description">Somma</string>
+    <string name="change_sign_description">Cambia segno</string>
+    <string name="decimal_separator_description">Virgola decimale</string>
+    <string name="current_value_description">Valore corrente: %1$s</string>
+    <string name="stack_empty">Stack vuoto</string>
+    <string name="stack_empty_description">Lo stack è vuoto</string>
+    <string name="stack_values_description">Stack, dal basso verso l’alto: %1$s</string>
+    <string name="error_insufficient_operands">Operandi insufficienti</string>
+    <string name="error_division_by_zero">Impossibile dividere per zero</string>
+    <string name="error_arithmetic">Errore di calcolo</string>
+    <string name="error_unknown">Errore sconosciuto</string>
+    <string name="guide_title">Guida alla RPN</string>
+    <string name="guide_text"><![CDATA[
+        <p>Per usare la notazione polacca inversa:</p>
+        <p>&nbsp;1. Inserisci il primo numero e premi INVIO.<br/>
+        &nbsp;2. Inserisci il secondo numero.<br/>
+        &nbsp;3. Premi l’operatore desiderato (+, −, ×, ÷).</p>
+        <p><i>Esempio:</i> 3 INVIO 4 + restituisce 7.</p>
+        <p>Il display mostra fino a tre valori dello stack. La riga inferiore corrisponde alla cima.</p>
+    ]]></string>
+</resources>

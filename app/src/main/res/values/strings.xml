@@ -19,7 +19,24 @@
     <string name="_0">0</string>
     <string name="sep">.</string>
     <string name="cs">±</string>
-    <string name="help">Help</string>
+    <string name="help">Open the RPN guide</string>
+    <string name="enter_description">Push value onto the stack</string>
+    <string name="clear_entry_description">Clear current entry</string>
+    <string name="clear_all_description">Clear entry and stack</string>
+    <string name="divide_description">Divide</string>
+    <string name="multiply_description">Multiply</string>
+    <string name="subtract_description">Subtract</string>
+    <string name="add_description">Add</string>
+    <string name="change_sign_description">Change sign</string>
+    <string name="decimal_separator_description">Decimal point</string>
+    <string name="current_value_description">Current value: %1$s</string>
+    <string name="stack_empty">Stack empty</string>
+    <string name="stack_empty_description">The stack is empty</string>
+    <string name="stack_values_description">Stack, from bottom to top: %1$s</string>
+    <string name="error_insufficient_operands">Not enough operands</string>
+    <string name="error_division_by_zero">Cannot divide by zero</string>
+    <string name="error_arithmetic">Calculation error</string>
+    <string name="error_unknown">Unknown error</string>
     <string name="guide_title">RPN Guide</string>
     <string name="guide_text"><![CDATA[
         <p>To use Reverse Polish Notation:</p>
@@ -27,5 +44,6 @@
         &nbsp;2. Enter the second number.<br/>
         &nbsp;3. Press the desired operator (+, -, ×, ÷).</p>
         <p><i>Example:</i> 3 ENTER 4 + yields 7.</p>
+        <p>The display shows up to three stack values. The bottom line is the top of the stack.</p>
     ]]></string>
 </resources>
