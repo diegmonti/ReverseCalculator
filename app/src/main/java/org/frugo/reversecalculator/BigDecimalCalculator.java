@@ -172,7 +172,15 @@ public class BigDecimalCalculator implements CalculatorInterface {
 
     @Override
     public String getBufferState() {
-        return stack.toString();
+        StringBuilder state = new StringBuilder("[");
+        Iterator<BigDecimal> values = stack.iterator();
+        while (values.hasNext()) {
+            state.append(formatResult(values.next()));
+            if (values.hasNext()) {
+                state.append(", ");
+            }
+        }
+        return state.append(']').toString();
     }
 
     @Override
