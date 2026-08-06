@@ -100,7 +100,7 @@ jobs:
       - name: Build signed release artifacts
         run: ./gradlew assembleRelease bundleRelease --no-daemon -Pandroid.injected.signing.store.file="${{ github.workspace }}/release.jks" -Pandroid.injected.signing.store.password="${{ secrets.KEYSTORE_PASSWORD }}" -Pandroid.injected.signing.key.alias="${{ secrets.KEY_ALIAS }}" -Pandroid.injected.signing.key.password="${{ secrets.KEY_PASSWORD }}"
       - name: Upload to GitHub Releases
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             app/build/outputs/apk/release/app-release.apk
