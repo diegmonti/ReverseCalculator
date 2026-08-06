@@ -32,7 +32,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v4
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
       - name: Run quality checks
         run: ./gradlew testDebugUnitTest lintDebug assembleDebug assembleDebugAndroidTest --no-daemon
 
@@ -52,7 +52,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v4
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -93,7 +93,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v4
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
       - name: Decode Keystore
         run: |
           printf '%s' "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > "${{ github.workspace }}/release.jks"
