@@ -14,12 +14,16 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Rect;
 import android.os.SystemClock;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -33,6 +37,15 @@ public class MainActivityStateTest {
 
     private static final long ACTIVITY_READY_TIMEOUT_MS = 10_000;
     private static final long ACTIVITY_READY_POLL_INTERVAL_MS = 50;
+
+    @Test
+    public void calculatorControlsStayWithinSafeWindowAfterRecreation() {
+        try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
+            assertCalculatorControlsWithinSafeWindow();
+            scenario.recreate();
+            assertCalculatorControlsWithinSafeWindow();
+        }
+    }
 
     @Test
     public void calculatorStateSurvivesActivityRecreation() {
@@ -117,6 +130,7 @@ public class MainActivityStateTest {
             scenario.onActivity(activity -> activity.setRequestedOrientation(
                     ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE));
             waitForLandscapeLayout(scenario);
+            assertCalculatorControlsWithinSafeWindow();
 
             for (int buttonId : new int[]{R.id.enter_button, R.id.clear_entry_button,
                     R.id.clear_all_button, R.id.add_button, R.id.digit_8_button}) {
@@ -133,6 +147,36 @@ public class MainActivityStateTest {
                     assertTrue(layout.getHeight() <= availableHeight);
                 });
             }
+        }
+    }
+
+    private static void assertCalculatorControlsWithinSafeWindow() {
+        for (int viewId : new int[]{R.id.help_button, R.id.state, R.id.buffer, R.id.keypad}) {
+            onView(withId(viewId)).check((view, noViewFoundException) -> {
+                if (noViewFoundException != null) {
+                    throw noViewFoundException;
+                }
+                View window = view.getRootView();
+                WindowInsetsCompat windowInsets = ViewCompat.getRootWindowInsets(window);
+                assertNotNull("Window insets must be available", windowInsets);
+                Insets safeInsets = windowInsets.getInsets(
+                        WindowInsetsCompat.Type.systemBars()
+                                | WindowInsetsCompat.Type.displayCutout());
+                int[] windowLocation = new int[2];
+                window.getLocationOnScreen(windowLocation);
+                Rect safeBounds = new Rect(
+                        windowLocation[0] + safeInsets.left,
+                        windowLocation[1] + safeInsets.top,
+                        windowLocation[0] + window.getWidth() - safeInsets.right,
+                        windowLocation[1] + window.getHeight() - safeInsets.bottom);
+                int[] viewLocation = new int[2];
+                view.getLocationOnScreen(viewLocation);
+                Rect controlBounds = new Rect(viewLocation[0], viewLocation[1],
+                        viewLocation[0] + view.getWidth(), viewLocation[1] + view.getHeight());
+                assertTrue("Control " + viewId + " overlaps system bars or display cutout: "
+                                + controlBounds + " outside " + safeBounds,
+                        safeBounds.contains(controlBounds));
+            });
         }
     }
 
